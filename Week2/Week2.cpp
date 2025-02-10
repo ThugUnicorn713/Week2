@@ -11,11 +11,14 @@ using namespace std;
 void printStars(int userInput);
 void ExceriseOne();
 void ExceriseTwo();
+void ExceriseThree();
 
 
 struct bookInfo;
 
 void saveToFile(bookInfo newBook);
+
+void loadToFile(bookInfo newBook);
 
 
 int main()
@@ -23,7 +26,7 @@ int main()
 	
 	
 	//ExceriseOne();
-	//ExceriseTwo();
+	ExceriseTwo();
 
 }
 
@@ -70,22 +73,45 @@ struct bookInfo
 void ExceriseTwo() {
 
 	bookInfo newBook;
-	newBook.title = "The Child Theif\n";
-	newBook.author = "Brom\n";
+	newBook.title = "The Child Theif";
+	newBook.author = "Brom";
 	newBook.pubYear = 2009;
 
 	saveToFile(newBook);
-
+	loadToFile(newBook);
 }
+
 
 void saveToFile(bookInfo newBook){
 	
 	ofstream outf("Books.txt");
 
-	outf << newBook.title;
-	outf << newBook.author;
-	outf << newBook.pubYear;
+	outf << newBook.title << endl;
+	outf << newBook.author << endl;
+	outf << newBook.pubYear << endl;
 	outf.close();
+}
+
+void loadToFile(bookInfo newBook) {
+
+	string tempYear;
+
+	ifstream inf("Books.txt");
+
+		//inf >> newBook.title;
+		getline(inf, newBook.title);
+		cout << newBook.title << endl;
+
+		//inf >> newBook.author;
+		getline(inf, newBook.author);
+		cout << newBook.author << endl;
+
+		//inf >> newBook.pubYear;
+		getline(inf, tempYear);
+		newBook.pubYear = stoi(tempYear);
+		cout << newBook.pubYear << endl;
+		
+
 }
 
 
