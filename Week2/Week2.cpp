@@ -2,15 +2,28 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
+//methods
 void printStars(int userInput);
 void ExceriseOne();
+void ExceriseTwo();
+
+
+struct bookInfo;
+
+void saveToFile(bookInfo newBook);
+
 
 int main()
 {
 	
-	ExceriseOne();
+	
+	//ExceriseOne();
+	//ExceriseTwo();
 
 }
 
@@ -43,5 +56,37 @@ void printStars(int userInput) {
 
 		cout << endl;
 	}
+
 }
+
+struct bookInfo
+{
+	string title;
+	string author;
+	int pubYear;
+
+};
+
+void ExceriseTwo() {
+
+	bookInfo newBook;
+	newBook.title = "The Child Theif\n";
+	newBook.author = "Brom\n";
+	newBook.pubYear = 2009;
+
+	saveToFile(newBook);
+
+}
+
+void saveToFile(bookInfo newBook){
+	
+	ofstream outf("Books.txt");
+
+	outf << newBook.title;
+	outf << newBook.author;
+	outf << newBook.pubYear;
+	outf.close();
+}
+
+
 
